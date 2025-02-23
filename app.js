@@ -41,6 +41,7 @@ app.use(cors({
 
 app.use(express.json());
 
+const path = require("path")
 const product = require('./routes/product');
 const brand = require('./routes/brand')
 const category = require('./routes/category');
@@ -62,6 +63,7 @@ app.use((err, req, res, next) => {
         message: err.message
     });
 });
+
 
 sequelize.authenticate()
     .then(() => {
