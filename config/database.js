@@ -13,7 +13,7 @@
 //     storage: './database.sqlite'
 // });
 
-const mysql2 = require('mysql2');
+const { Sequelize } = require('sequelize');
 
 const sequelize = new Sequelize({
   dialect: 'mysql',
