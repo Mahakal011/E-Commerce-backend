@@ -33,7 +33,7 @@ const swaggerOptions = {
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use(cors({
-    origin: '*',  // Your React app's URL
+    origin: 'https://shopping-cart-red-six.vercel.app/',  // Your React app's URL
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
