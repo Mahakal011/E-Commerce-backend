@@ -1,5 +1,5 @@
 const User = require("../models/user");
-const bcrypt = require("bcrypt");
+const bcryptjs = require("bcryptjs");
 const SALT_ROUNDS = 12;
 const { generateToken } = require("../utils/JwtUtils");
 const config = require('../config/config')
@@ -23,8 +23,8 @@ const createUser = async (user) => {
     if (existingUser) {
       throw new Error("User with this email already exists");
     }
-    const salt = await bcrypt.genSalt(SALT_ROUNDS);
-    const hashedPassword = await bcrypt.hash(user.password, salt);
+    const salt = await bcryptjs.genSalt(SALT_ROUNDS);
+    const hashedPassword = await bcryptjs.hash(user.password, salt);
     await User.create({ ...user, password: hashedPassword });
     console.log("User created successfully");
     return user;
@@ -46,7 +46,7 @@ const loginUser = async (email, password) => {
     }
 
     // Verify password
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    const isPasswordValid = await bcryptjs.compare(password, user.password);
 
     if (!isPasswordValid) {
       throw new Error("Invalid credentials");
